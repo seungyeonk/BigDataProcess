@@ -35,7 +35,7 @@ A = int(stuNum * 0.3) - AP
 BP = int(stuNum * 0.2)
 B = int(stuNum * 0.4) - BP
 re = stuNum - AP - A - BP - B - F
-CP = re // 2
+CP = re 
 C = re - CP
 
 gradeNum = [AP, A, BP, B, CP, C]
