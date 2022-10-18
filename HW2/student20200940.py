@@ -11,19 +11,19 @@ F = 0
 while True:
 	midterm = ws.cell(row = row, column = 3).value
 	final = ws.cell(row = row, column = 4).value
-	homework = ws.cell(row = row, column = 5).value
+	hw = ws.cell(row = row, column = 5).value
 	attendance = ws.cell(row = row, column = 6).value
 
 	if midterm == None:
 		break
 	
-	total = midterm * 0.3 + final * 0.35 + homework * 0.34 + attendance
+	total = midterm * 0.3 + final * 0.35 + hw * 0.34 + attendance
 
-	if total < 40:
-		grade = 'F'
-		F += 1
-	else:
-		grade = 'Q'
+	#if total < 40:
+	#	grade = 'F'
+	#	F += 1
+	#else:
+	grade = 'Q'
 
 	ws.cell(row = row, column = 7, value = total)
 	ws.cell(row = row, column = 8, value = grade)
@@ -34,15 +34,15 @@ AP = int(stuNum * 0.15)
 A = int(stuNum * 0.3) - AP
 BP = int(stuNum * 0.2)
 B = int(stuNum * 0.4) - BP
-re = stuNum - AP - A - BP - B - F
-CP = re 
+re = stuNum - AP - A - BP - B #- F
+CP = re // 2
 C = re - CP
 
 gradeNum = [AP, A, BP, B, CP, C]
 print(gradeNum)
 gradeStr = ["A+", "A0", "B+", "B0", "C+", "C0"]
 
-num = F
+num = F = 0
 n = 0
 
 while num != stuNum:
