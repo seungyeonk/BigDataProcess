@@ -6,7 +6,6 @@ wb = openpyxl.load_workbook(filename = "student.xlsx")
 ws = wb["Sheet1"]
 
 row = 2
-F = 0
 
 while True:
 	midterm = ws.cell(row = row, column = 3).value
@@ -19,10 +18,6 @@ while True:
 	
 	total = midterm * 0.3 + final * 0.35 + hw * 0.34 + attendance
 
-	#if total < 40:
-	#	grade = 'F'
-	#	F += 1
-	#else:
 	grade = 'Q'
 
 	ws.cell(row = row, column = 7, value = total)
@@ -34,7 +29,7 @@ AP = int(stuNum * 0.15)
 A = int(stuNum * 0.3) - AP
 BP = int(stuNum * 0.2)
 B = int(stuNum * 0.4) - BP
-re = stuNum - AP - A - BP - B #- F
+re = stuNum - AP - A - BP - B 
 CP = re // 2
 C = re - CP
 
@@ -42,7 +37,7 @@ gradeNum = [AP, A, BP, B, CP, C]
 print(gradeNum)
 gradeStr = ["A+", "A0", "B+", "B0", "C+", "C0"]
 
-num = F = 0
+num = 0
 n = 0
 
 while num != stuNum:
