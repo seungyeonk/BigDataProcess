@@ -29,6 +29,7 @@ def classify0(inX, dataSet, labels, k):
     sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(1), reverse=True)
     return sortedClassCount[0][0]
 
+
 def makevector(filename) :
     returnVect = np.zeros((1, 1024))
     fr = open(filename)
@@ -37,6 +38,7 @@ def makevector(filename) :
         for j in range(32):
             returnVect[0, 32*i+j] = int(lineStr[j])
     return returnVect
+
 
 def test(k):
     labels = []
@@ -61,6 +63,7 @@ def test(k):
         if (classifierResult != classNum) :
             errorCount += 1
     print(int(errorCount / mTest * 100))
+
 if __name__ == "__main__":
 	for i in range(1, 21):
     		test(i)
