@@ -6,18 +6,18 @@ import sys
 trainingfile = sys.argv[1]
 testfile = sys.argv[2]
 def autoNorm(dataSet):
-    minVals = dataSet.min(0)
-    maxVals = dataSet.max(0)
-    ranges = maxVals - minVals
+    min_Vals = dataSet.min(0)
+    max_Vals = dataSet.max(0)
+    ranges = max_Vals - min_Vals
     normDataSet = np.zeros(np.shape(dataSet))
     m = dataSet.shape[0]
-    normDataSet = dataSet - np.tile(minVals, (m, 1))
+    normDataSet = dataSet - np.tile(min_Vals, (m, 1))
     normDataSet = normDataSet / np.tile(ranges, (m, 1))
-    return normDataSet, ranges, minVals
+    return normDataSet, ranges, min_Vals
 
 def classify0(inX, dataSet, labels, k):
-    dataSetSize = dataSet.shape[0]
-    diffMat = np.tile(inX, (dataSetSize, 1))-dataSet
+    dataSize = dataSet.shape[0]
+    diffMat = np.tile(inX, (dataSize, 1))-dataSet
     sqDiffMat = diffMat ** 2
     sqDistances = sqDiffMat.sum(axis=1)
     distances = sqDistances ** 0.5
@@ -52,17 +52,17 @@ def test(k):
         labels.append(classNum)
         trainingMat[i, :] = makevector('%s/%s' % (trainingfile, fullfileName))
     testFileList = listdir(testfile)
-    errorCount = 0
-    mTest = len(testFileList)
-    for i in range(mTest):
+    errCount = 0
+    nTest = len(testFileList)
+    for i in range(nTest):
         fullfileName = testFileList[i]
         fileName = fullfileName.split('.')[0]
         classNum = int(fileName.split('_')[0])
         vectorUnderTest = makevector('%s/%s' % (testfile, fullfileName))
         classifierResult = classify0(vectorUnderTest, trainingMat, labels, k)
         if (classifierResult != classNum) :
-            errorCount += 1
-    print(int(errorCount / mTest * 100))
+            errCount += 1
+    print(int(errCount / nTest * 100))
 
 if __name__ == "__main__":
 	for i in range(1, 21):
